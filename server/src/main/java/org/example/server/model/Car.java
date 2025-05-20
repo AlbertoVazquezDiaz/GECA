@@ -22,6 +22,9 @@ public class Car {
 
     private String type;
 
+    @Column(name = "number_car", nullable = false)
+    private String numberCar;
+
     public Long getId() {
         return id_car;
     }
@@ -60,5 +63,13 @@ public class Car {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getNumberCar() {
+        return numberCar;
+    }
+
+    public void setNumberCar(String numberCar) {
+        this.numberCar = numberCar;
     }
 }
