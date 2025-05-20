@@ -36,7 +36,7 @@
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-medium mb-2">Características Generales</h3>
           <ul class="text-body-2 pl-4">
-            <li><strong>Placa:</strong> {{ carro?.number_car }}</li>
+            <li><strong>Placa:</strong> {{ carro?.numberCar }}</li>
             <li><strong>Tipo:</strong> {{ carro?.type }}</li>
             <li><strong>Color:</strong>
               <span class="d-inline-flex align-center ml-1">

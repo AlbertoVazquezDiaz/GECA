@@ -5,7 +5,7 @@
       <v-card-text>
         <v-text-field v-model="form.brand" label="Marca" outlined dense />
         <v-text-field v-model="form.model" label="Modelo" outlined dense />
-        <v-text-field v-model="form.plate" label="Placa" outlined dense disabled />
+        <v-text-field v-model="form.numberCar" label="Placa" outlined dense disabled />
         <v-select
             v-model="form.type"
             :items="['Sedán', 'Hatchback']"
@@ -52,7 +52,7 @@ watch(
       if (carro) {
         form.brand = carro.brand
         form.model = carro.model
-        form.plate = carro.placa || carro.plate || ''
+        form.plate = carro.numberCar
         form.type = carro.type
         form.color = carro.color
       }

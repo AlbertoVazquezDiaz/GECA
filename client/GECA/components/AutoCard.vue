@@ -26,7 +26,7 @@
         {{ carro.brand }} {{ carro.model }}
       </div>
       <div class="text-caption text-grey-darken-1 mb-2">
-        Placa: <strong>{{ carro.plate || carro.placa }}</strong>
+        Placa: <strong>{{ carro.numberCar }}</strong>
       </div>
       <div class="d-flex justify-space-between align-center">
         <v-chip

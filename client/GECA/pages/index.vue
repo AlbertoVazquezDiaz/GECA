@@ -100,6 +100,7 @@ const guardarAuto = async (nuevo) => {
       model: nuevo.modelo,
       type: nuevo.tipo,
       color: nuevo.color,
+      numberCar: nuevo.numberCar,
     })
     autos.value.push(creado)
   } catch (e) {
@@ -115,6 +116,7 @@ const actualizarAuto = async (editado) => {
       model: editado.model,
       type: editado.type,
       color: editado.color,
+      numberCar: editado.numberCar,
     })
 
     // Actualizar en el array

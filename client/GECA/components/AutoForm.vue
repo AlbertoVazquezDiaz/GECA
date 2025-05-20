@@ -5,7 +5,7 @@
       <v-card-text>
         <v-text-field v-model="form.marca" label="Marca" outlined dense :error="submitted && !form.marca" />
         <v-text-field v-model="form.modelo" label="Modelo" outlined dense :error="submitted && !form.modelo" />
-        <v-text-field v-model="form.placa" label="Placa" outlined dense :error="submitted && !form.placa" />
+        <v-text-field v-model="form.numberCar" label="Placa" outlined dense :error="submitted && !form.numberCar" />
         <v-select
             v-model="form.tipo"
             :items="['Sedán', 'Hatchback']"
@@ -42,7 +42,7 @@ const emit = defineEmits(['update:visible', 'agregar'])
 const form = reactive({
   marca: '',
   modelo: '',
-  placa: '',
+  numberCar: '', // ✅ Usamos el nombre del backend
   tipo: '',
   color: '',
 })
@@ -52,16 +52,16 @@ const submitted = ref(false)
 const guardar = () => {
   submitted.value = true
 
-  // Verificamos campos requeridos
-  if (!form.marca || !form.modelo || !form.placa || !form.tipo || !form.color) return
+  // Validación
+  if (!form.marca || !form.modelo || !form.numberCar || !form.tipo || !form.color) return
 
   emit('agregar', { ...form })
   emit('update:visible', false)
 
-  // Limpiar campos
+  // Limpiar
   form.marca = ''
   form.modelo = ''
-  form.placa = ''
+  form.numberCar = ''
   form.tipo = ''
   form.color = ''
   submitted.value = false
