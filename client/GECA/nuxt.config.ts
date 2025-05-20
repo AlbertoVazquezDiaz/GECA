@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@nuxt/eslint'],
-  css: ['vuetify/styles'],
+  css: ['vuetify/styles', '@mdi/font/css/materialdesignicons.min.css'],
     build: {
         transpile: ['vuetify'],
     },
