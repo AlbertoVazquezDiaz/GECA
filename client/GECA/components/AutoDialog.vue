@@ -36,8 +36,8 @@
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-medium mb-2">Características Generales</h3>
           <ul class="text-body-2 pl-4">
-            <li><strong>Placa:</strong> {{ carro?.placa }}</li>
-            <li><strong>Tipo:</strong> {{ carro?.tipo }}</li>
+            <li><strong>Placa:</strong> {{ carro?.numberCar }}</li>
+            <li><strong>Tipo:</strong> {{ carro?.type }}</li>
             <li><strong>Color:</strong>
               <span class="d-inline-flex align-center ml-1">
                 <div
@@ -53,11 +53,16 @@
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-medium mb-2">Detalles Adicionales</h3>
           <p class="text-body-2 text-grey-darken-1">
-            Aquí podrías colocar más información técnica o descripción del auto si lo deseas.
-            Actualmente estos campos pueden venir del backend más adelante.
+           Información relevante del vehículo.
           </p>
         </v-col>
       </v-row>
+      <v-card-actions>
+        <v-spacer />
+        <v-btn text color="blue" @click="emit('editar')">Editar</v-btn>
+        <v-btn text @click="emit('update:visible', false)">Cerrar</v-btn>
+      </v-card-actions>
+
     </v-card>
   </v-dialog>
 </template>
@@ -67,7 +72,7 @@ const props = defineProps({
   carro: Object,
   visible: Boolean,
 })
-const emit = defineEmits(['update:visible'])
+const emit = defineEmits(['update:visible', 'editar'])
 </script>
 
 <style scoped>
