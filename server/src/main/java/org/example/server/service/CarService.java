@@ -42,6 +42,7 @@ public class CarService {
                     car.setModel(newCar.getModel());
                     car.setColor(newCar.getColor());
                     car.setType(newCar.getType());
+                    car.setNumberCar(newCar.getNumberCar());
                     return repository.save(car);
                 }).orElse(null);
     }
