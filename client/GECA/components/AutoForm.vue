@@ -1,45 +1,26 @@
 <template>
-  <v-dialog :model-value="visible" @update:model-value="emit('update:visible', $event)" max-width="500">
+  <v-dialog :model-value="visible" max-width="500" @update:model-value="emit('update:visible', $event)">
     <v-card class="pa-4">
       <v-card-title class="text-h6 font-weight-bold">Agregar nuevo auto</v-card-title>
       <v-card-text>
-        <v-text-field v-model="form.marca" label="Marca" outlined dense />
-        <v-text-field v-model="form.modelo" label="Modelo" outlined dense />
-        <v-text-field v-model="form.placa" label="Placa" outlined dense />
+        <v-text-field v-model="form.marca" label="Marca" outlined dense :error="submitted && !form.marca" />
+        <v-text-field v-model="form.modelo" label="Modelo" outlined dense :error="submitted && !form.modelo" />
+        <v-text-field v-model="form.placa" label="Placa" outlined dense :error="submitted && !form.placa" />
         <v-select
             v-model="form.tipo"
             :items="['Sedán', 'Hatchback']"
             label="Tipo"
             outlined
             dense
+            :error="submitted && !form.tipo"
         />
         <v-text-field
             v-model="form.color"
             label="Color (ej. rojo, negro)"
             outlined
             dense
+            :error="submitted && !form.color"
         />
-        <v-text-field
-            v-model="form.imagen"
-            label="URL de imagen"
-            outlined
-            dense
-        />
-        <v-text-field
-            v-model="form.proveedor"
-            label="Proveedor"
-            outlined
-            dense
-            class="mt-2"
-        />
-        <v-text-field
-            v-model="form.detalles"
-            label="Detalles adicionales"
-            outlined
-            dense
-            class="mt-2"
-        />
-
       </v-card-text>
       <v-card-actions>
         <v-spacer />
@@ -51,7 +32,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 const props = defineProps({
   visible: Boolean,
@@ -64,22 +45,25 @@ const form = reactive({
   placa: '',
   tipo: '',
   color: '',
-  imagen: '',
-  proveedor: '',
-  detalles: ''
 })
 
+const submitted = ref(false)
+
 const guardar = () => {
+  submitted.value = true
+
+  // Verificamos campos requeridos
+  if (!form.marca || !form.modelo || !form.placa || !form.tipo || !form.color) return
+
   emit('agregar', { ...form })
   emit('update:visible', false)
-  // Limpiar
+
+  // Limpiar campos
   form.marca = ''
   form.modelo = ''
   form.placa = ''
   form.tipo = ''
   form.color = ''
-  form.imagen = ''
-  form.proveedor = ''
-  form.detalles = ''
+  submitted.value = false
 }
 </script>
