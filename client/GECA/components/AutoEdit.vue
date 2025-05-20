@@ -41,18 +41,19 @@ const emit = defineEmits(['update:visible', 'actualizar'])
 const form = reactive({
   brand: '',
   model: '',
-  plate: '',
+  numberCar: '',
   type: '',
   color: '',
 })
 
+// Cuando cambia el carro seleccionado, actualizamos el formulario
 watch(
     () => props.carro,
     (carro) => {
       if (carro) {
         form.brand = carro.brand
         form.model = carro.model
-        form.plate = carro.numberCar
+        form.numberCar = carro.numberCar // ✅ correctamente asignado
         form.type = carro.type
         form.color = carro.color
       }
@@ -61,7 +62,13 @@ watch(
 )
 
 const guardar = () => {
-  emit('actualizar', { ...form })
+  emit('actualizar', {
+    brand: form.brand,
+    model: form.model,
+    type: form.type,
+    color: form.color,
+    numberCar: form.numberCar, // Se puede incluir aunque esté bloqueado
+  })
   emit('update:visible', false)
 }
 </script>

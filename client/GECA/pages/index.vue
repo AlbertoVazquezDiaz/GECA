@@ -140,11 +140,14 @@ const eliminarAuto = async (carro) => {
 
 onMounted(async () => {
   try {
-    autos.value = await api.getAll()
+    const result = await api.getAll()
+    console.log('Autos recibidos del backend:', result) // 👈 te ayudará a depurar
+    autos.value = result
   } catch (e) {
     console.error('Error al cargar autos:', e)
   }
 })
+
 </script>
 
 <style scoped>

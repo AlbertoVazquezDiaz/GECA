@@ -2,7 +2,9 @@ const baseUrl = 'http://localhost:8080/api/cars'
 
 export const useCarsApi = () => {
     const getAll = async () => {
-        const { data, error } = await useFetch(baseUrl)
+        const { data, error } = await useFetch(baseUrl, {
+            server: false,
+        })
         if (error.value) throw new Error('Error al cargar autos')
         return data.value || []
     }
@@ -11,6 +13,7 @@ export const useCarsApi = () => {
         const { data, error } = await useFetch(baseUrl, {
             method: 'POST',
             body: car,
+            server: false,
         })
         if (error.value) throw new Error('Error al guardar auto')
         return data.value
@@ -20,6 +23,7 @@ export const useCarsApi = () => {
         const { data, error } = await useFetch(`${baseUrl}/${id}`, {
             method: 'PUT',
             body: car,
+            server: false,
         })
         if (error.value) throw new Error('Error al actualizar auto')
         return data.value
@@ -28,6 +32,7 @@ export const useCarsApi = () => {
     const remove = async (id) => {
         const { error } = await useFetch(`${baseUrl}/${id}`, {
             method: 'DELETE',
+            server: false,
         })
         if (error.value) throw new Error('Error al eliminar auto')
     }
